@@ -33572,12 +33572,6 @@ var es_array_includes = __webpack_require__("caad");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
 var web_dom_collections_for_each = __webpack_require__("159b");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.split.js
-var es_string_split = __webpack_require__("1276");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
-var es_regexp_exec = __webpack_require__("ac1f");
-
 // EXTERNAL MODULE: ./node_modules/xlsx/xlsx.js
 var xlsx = __webpack_require__("1146");
 var xlsx_default = /*#__PURE__*/__webpack_require__.n(xlsx);
@@ -33587,8 +33581,6 @@ var FileSaver_min = __webpack_require__("21a6");
 var FileSaver_min_default = /*#__PURE__*/__webpack_require__.n(FileSaver_min);
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/eslint-loader??ref--13-0!./src/components/ImportPresetList/model.js?vue&type=script&lang=js&
-
-
 
 
 
@@ -33671,16 +33663,9 @@ var FileSaver_min_default = /*#__PURE__*/__webpack_require__.n(FileSaver_min);
                     }
 
                     ;
-
-                    function getListArrays(csv) {
-                      var outputArrays = [];
-                      csv.split('\n').forEach(function (row) {
-                        outputArrays.push(row.split(','));
-                      });
-                      return outputArrays;
-                    }
-
-                    var listItems = getSortedListItems(getListArrays(xlsx_default.a.utils.sheet_to_csv(workbook.Sheets[sheetName]), {
+                    var listItems = getSortedListItems(xlsx_default.a.utils.sheet_to_json(workbook.Sheets[sheetName], {
+                      header: 1
+                    }, {
                       raw: true
                     }));
                     var outputArray = [];
@@ -33688,8 +33673,10 @@ var FileSaver_min_default = /*#__PURE__*/__webpack_require__.n(FileSaver_min);
                     outputArray.push([listName]);
                     listItems.forEach(function (listItem, index) {
                       var previous = index > 0 ? listItems[index - 1] : undefined;
+                      var isPreviousSameItem = true;
                       listItem.forEach(function (item, indent) {
-                        if ((!previous || item !== previous[indent]) && (!_this.isLastColumnValue || indent !== listItem.length - 1)) {
+                        if ((!previous || item !== previous[indent] || !isPreviousSameItem) && (!_this.isLastColumnValue || indent !== listItem.length - 1)) {
+                          isPreviousSameItem = false;
                           var array = [];
 
                           for (var i = 0; i <= indent; i++) {
@@ -33780,6 +33767,12 @@ var es_number_constructor = __webpack_require__("a9e3");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
 var es_array_map = __webpack_require__("d81d");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.split.js
+var es_string_split = __webpack_require__("1276");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
+var es_regexp_exec = __webpack_require__("ac1f");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
 var es_array_concat = __webpack_require__("99af");
@@ -38125,4 +38118,4 @@ module.exports = Array.isArray || function (arr) {
 /***/ })
 
 }]);
-//# sourceMappingURL=chunk-fcd89270.c5d78478.js.map
+//# sourceMappingURL=chunk-fcd89270.256b83d1.js.map
